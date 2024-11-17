@@ -1,6 +1,7 @@
 package com.example.mobileimagetraining
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         return ORTTrainer(checkpointPath, trainingModelPath, evalModelPath, optimizerModelPath)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -94,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         binding.customClassSetting.setOnCheckedChangeListener(onCustomClassSettingChangedListener)
 
         // Home screen
-        binding.statusMessage.text = "ORT Personalize"
+        binding.statusMessage.text = "mobile image training"
     }
 
     private val onInferenceButtonClickedListener: View.OnClickListener =
