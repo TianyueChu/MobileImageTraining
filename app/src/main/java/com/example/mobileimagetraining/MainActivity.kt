@@ -23,8 +23,8 @@ import java.nio.FloatBuffer
 import java.nio.LongBuffer
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val PICK_IMAGE = 1000 // Pick an image for inferencing from the android gallery
     private val CAPTURE_IMAGE = 2000 // Capture an image from the camera
@@ -36,20 +36,21 @@ class MainActivity : AppCompatActivity() {
         6000 // Pick class X images for training from the android gallery
     private val PICK_CLASS_Y_IMAGES_FOR_TRAINING =
         7000 // Pick class Y images for training from the android gallery
-    private val CAMERA_PERMISSION_CODE = 8 // Permission to access the camera
+    private val CAMERA_PERMISSION_CODE = 100 // Permission to access the camera
     private var images =
         ArrayList<Pair<Uri, Int>>() // Array that stores the Uri for all images that need to be trained.
     private var samplesClassA = 0 // Number of samples for class A
-    private var nameClassA: String = "A" // Default class A name
+    private var nameClassA: String = "Older Female" // Default class A name
     private var samplesClassB = 0 // Number of samples for class B
-    private var nameClassB: String = "B" // Default class B name
+    private var nameClassB: String = "Young Female" // Default class B name
     private var samplesClassX = 0 // Number of samples for class X
-    private var nameClassX: String = "X" // Default class X name
+    private var nameClassX: String = "Older Male" // Default class X name
     private var samplesClassY = 0 // Number of samples for class Y
-    private var nameClassY: String = "Y" // Default class Y name
+    private var nameClassY: String = "Young Male" // Default class Y name
     private val prepackedDefaultLabels: Array<String> =
-        arrayOf("dog", "cat", "elephant", "cow") // Default labels for non custom class
+        arrayOf("Older Female", "Young Female", "Older Male", "Young Male") // Default labels for non custom class
     private var ortTrainer: ORTTrainer? = null
+
 
     private fun makeOrtTrainerAndCopyAssets() : ORTTrainer {
         val trainingModelPath = copyFileOrDir("training_artifacts/training_model.onnx")
@@ -63,16 +64,13 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-
+        //setContentView(R.layout.activity_main)
         ortTrainer = makeOrtTrainerAndCopyAssets()
 
         val inferButton: Button = findViewById(R.id.infer_button)
         inferButton.setOnClickListener(onInferenceButtonClickedListener)
-
         val trainButton: Button = findViewById(R.id.train_button)
         trainButton.setOnClickListener(onTrainButtonClickedListener)
         trainButton.isEnabled = false

@@ -59,5 +59,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("com.microsoft.onnxruntime:onnxruntime-training-android:1.19.2")
+    implementation("com.google.android.material:material:1.9.0")
     // full package
 }
