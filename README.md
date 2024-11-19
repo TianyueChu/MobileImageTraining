@@ -1,4 +1,4 @@
-# On-Device Training with ONNX Runtime on Android (Java)
+# On-Device Training on Android (Java)
 
 This repository demonstrates how to perform **on-device training** on Android devices with Java.  devices, enabling efficient, decentralized learning.
 
